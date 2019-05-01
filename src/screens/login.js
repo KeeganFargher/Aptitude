@@ -1,6 +1,6 @@
 import SplashScreen from 'react-native-splash-screen';
 import React from 'react';
-import { StyleSheet, Text, Image, View, TextInput, AsyncStorage, Platform, Alert } from 'react-native';
+import { StyleSheet, Text, Image, View, TextInput, Platform, Alert } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import BackgroundContainer from './../components/backgroundcontainer';
 import TextInputIcon from './../components/textinputicon';
@@ -11,6 +11,9 @@ import PrimaryButton from './../components/primarybutton';
 import { Icon, Input } from 'react-native-elements';
 import { apiConstants } from '../common/api';
 import axios from 'axios';
+import AsyncStorage from '@react-native-community/async-storage';
+import { Fumi, Sae, Akira, Hideo } from 'react-native-textinput-effects';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 class LoginScreen extends React.Component {
 	constructor() {
@@ -21,7 +24,7 @@ class LoginScreen extends React.Component {
 
 		//define state
 		this.state = {
-			email: 'fargherkeegan@gmail.com',
+			email: 'keeganfargher@gmail.com',
 			password: '12345',
 			submitting: false
 		};
@@ -32,12 +35,12 @@ class LoginScreen extends React.Component {
 		var isAuthenticated = await AsyncStorage.getItem('isAuthenticated');
 		var loggedin = isAuthenticated === true.toString();
 		if (loggedin) {
-			this.navigateScreen('Home');
+			// this.navigateScreen('Main');
 		}
 	}
 
 	componentDidMount() {
-		// SplashScreen.hide();
+		SplashScreen.hide();
 	}
 
 	resetNavigation(screen, params) {
@@ -69,23 +72,17 @@ class LoginScreen extends React.Component {
 
 	success(response) {
 		let data = response.data;
+
 		this.setState({ submitting: false });
 		//success, store the users apitoken and other info
+		AsyncStorage.setItem('data', JSON.stringify(data));
 		AsyncStorage.setItem('isAuthenticated', true.toString());
-		// AsyncStorage.setItem('UserId', data.CompanyUserModel.userModel.pklid.toString());
-		// AsyncStorage.setItem('UserGuid', data.CompanyUserModel.userModel.sGuid);
-		// AsyncStorage.setItem('CompanyGuid', data.CompanyUserModel.sCompanyGuid);
-		// AsyncStorage.setItem(
-		// 	'Name',
-		// 	`${data.CompanyUserModel.userModel.sFirstname} ${data.CompanyUserModel.userModel.sLastname}`
-		// );
-		// AsyncStorage.setItem('Firstname', data.CompanyUserModel.userModel.sFirstname);
-		// AsyncStorage.setItem('Lastname', data.CompanyUserModel.userModel.sLastname);
-		// AsyncStorage.setItem('Email', data.CompanyUserModel.userModel.sEmail);
-		this.navigateScreen('Home');
+		AsyncStorage.setItem('id', data.id);
+		this.navigateScreen('Main');
 	}
 
 	error(response) {
+		alert('Incorrect Login Details');
 		this.setState({ submitting: false });
 	}
 
@@ -105,7 +102,7 @@ class LoginScreen extends React.Component {
 				</View>
 				<View style={styles.formContainerStyle}>
 					<View style={styles.inputContainerStyle}>
-						<TextInputIcon
+						{/* <TextInputIcon
 							text={this.state.email}
 							name="email"
 							color={COLOR_WHITE}
@@ -115,10 +112,27 @@ class LoginScreen extends React.Component {
 							placeholderTextColor={COLOR_WHITE}
 							onChangeText={email => this.setState({ email: email })}
 							placeholder="Email Address"
+						/> */}
+						<Sae
+							label={'Email Address'}
+							iconClass={FontAwesomeIcon}
+							iconName={'mail'}
+							iconColor={'white'}
+							inputPadding={20}
+							labelHeight={24}
+							// active border height
+							borderHeight={2}
+							// TextInput props
+							inputStyle={{ borderBottomColor: 'white', borderBottomWidth: 2 }}
+							labelStyle={{ color: 'rgba(255, 255, 255, 0.7)' }}
+							autoCapitalize={'none'}
+							autoCorrect={false}
+							onChangeText={email => this.setState({ email: email })}
+							value={this.state.email}
 						/>
 					</View>
 					<View style={styles.inputContainerStyle}>
-						<TextInputIcon
+						{/* <TextInputIcon
 							text={this.state.password}
 							name="lock-outline"
 							color={COLOR_WHITE}
@@ -128,6 +142,23 @@ class LoginScreen extends React.Component {
 							placeholderTextColor={COLOR_WHITE}
 							secureTextEntry
 							placeholder="Password"
+						/> */}
+						<Sae
+							label={'Password'}
+							iconClass={FontAwesomeIcon}
+							iconName={'pencil'}
+							iconColor={'white'}
+							inputPadding={20}
+							labelHeight={24}
+							// active border height
+							borderHeight={2}
+							// TextInput props
+							inputStyle={{ borderBottomColor: 'white', borderBottomWidth: 2 }}
+							labelStyle={{ color: 'rgba(255, 255, 255, 0.7)' }}
+							autoCapitalize={'none'}
+							autoCorrect={false}
+							onChangeText={password => this.setState({ password: password })}
+							value={this.state.password}
 						/>
 					</View>
 					<View style={styles.actionContainerStyle}>
@@ -162,6 +193,10 @@ class LoginScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+	input: {
+		color: 'white',
+		backgroundColor: 'rgba(255, 255, 255, 0.1)'
+	},
 	scrollViewStyle: {
 		flex: 1
 	},
@@ -174,7 +209,10 @@ const styles = StyleSheet.create({
 		paddingTop: 20,
 		paddingLeft: 30,
 		paddingRight: 30,
-		flex: 0.7
+		paddingBottom: 30,
+		width: '100%',
+		position: 'absolute',
+		bottom: 0
 	},
 	inputContainerStyle: {
 		paddingBottom: Platform.OS === 'ios' ? 10 : 5,
@@ -182,6 +220,9 @@ const styles = StyleSheet.create({
 	},
 	actionContainerStyle: {
 		marginTop: 50
+	},
+	scene: {
+		flex: 1
 	}
 });
 
