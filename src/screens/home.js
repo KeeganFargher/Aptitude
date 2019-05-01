@@ -4,13 +4,19 @@ import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import BackgroundContainer from './../components/backgroundcontainer';
 import AsyncStorage from '@react-native-community/async-storage';
-import { AreaChart, Grid, ProgressCircle, LineChart, XAxis, YAxis } from 'react-native-svg-charts';
+import { AreaChart, Grid, ProgressCircle, LineChart, XAxis, YAxis, Path } from 'react-native-svg-charts';
 import * as shape from 'd3-shape';
 import { Divider } from 'react-native-elements';
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import Label from './../components/label';
 
 class Home extends React.Component {
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			stepCount: 60
+		};
 	}
 
 	navigateScreen(screen, params) {
@@ -20,7 +26,7 @@ class Home extends React.Component {
 
 	renderActionButton() {
 		return (
-			<ActionButton buttonColor="rgba(231,76,60,1)">
+			<ActionButton buttonColor="#d35400">
 				<ActionButton.Item
 					buttonColor="#9b59b6"
 					title="Set Goals"
@@ -47,40 +53,84 @@ class Home extends React.Component {
 		const axesSvg = { fontSize: 10, fill: 'grey' };
 		const verticalContentInset = { top: 10, bottom: 10 };
 		const xAxisHeight = 30;
+		const HorizontalLine = ({ y }) => (
+			<Line
+				key={'zero-axis'}
+				x1={'0%'}
+				x2={'100%'}
+				y1={y(50)}
+				y2={y(50)}
+				stroke={'grey'}
+				strokeDasharray={[4, 8]}
+				strokeWidth={2}
+			/>
+		);
+
+		const Tooltip = ({ x, y }) => (
+			<G x={x(5) - 75 / 2} key={'tooltip'} onPress={() => console.log('tooltip clicked')}>
+				<G y={50}>
+					<Rect height={40} width={75} stroke={'grey'} fill={'white'} ry={10} rx={10} />
+					<Text
+						x={75 / 2}
+						dy={20}
+						alignmentBaseline={'middle'}
+						textAnchor={'middle'}
+						stroke={'rgb(134, 65, 244)'}>
+						{`${data[5]}ºC`}
+					</Text>
+				</G>
+				<G x={75 / 2}>
+					<Line y1={50 + 40} y2={y(data[5])} stroke={'grey'} strokeWidth={2} />
+					<Circle
+						cy={y(data[5])}
+						r={6}
+						stroke={'rgb(134, 65, 244)'}
+						strokeWidth={2}
+						fill={'white'}
+					/>
+				</G>
+			</G>
+		);
+
 		return (
 			<View style={styles.container}>
-				{/* <ProgressCircle
-					strokeWidth={7}
-					style={{ height: 200 }}
-					progress={0.7}
-					progressColor={'#d35400'}
-					startAngle={-Math.PI * 0.7}
-					endAngle={Math.PI * 0.7}
-				/>
-				<View style={{ height: 200, padding: 20, flexDirection: 'row' }}>
-					<YAxis
-						data={data}
-						style={{ marginBottom: xAxisHeight }}
-						contentInset={verticalContentInset}
-						svg={axesSvg}
-					/>
-					<View style={{ flex: 1, marginLeft: 10 }}>
-						<LineChart
-							style={{ flex: 1 }}
-							data={data}
-							contentInset={verticalContentInset}
-							svg={{ stroke: 'rgb(134, 65, 244)' }}>
-							<Grid />
-						</LineChart>
-						<XAxis
-							style={{ marginHorizontal: -10, height: xAxisHeight }}
-							data={data}
-							formatLabel={(value, index) => index}
-							contentInset={{ left: 10, right: 10 }}
-							svg={axesSvg}
-						/>
-					</View>
-				</View> */}
+				<Label
+					style={[styles.circleLabel, { marginBottom: 50 }]}
+					color={'#cbd3db'}
+					fontSize={24}
+					fontFamily={'Raleway-Regular'}>
+					ACTIVITY
+				</Label>
+				<AnimatedCircularProgress
+					size={250}
+					width={7}
+					fill={this.state.stepCount}
+					duration={3000}
+					lineCap={'butt'}
+					tintColor="#d35400"
+					onAnimationComplete={() => console.log('onAnimationComplete')}
+					backgroundColor="rgba(255, 255, 255, 0.5)">
+					{fill => (
+						<View style={{ alignItems: 'center' }}>
+							<Label
+								style={styles.circleLabel}
+								color={'white'}
+								fontSize={70}
+								fontFamily={'Raleway-Thin'}>
+								{Math.round(fill) + '%'}
+							</Label>
+							<Label
+								style={styles.circleLabel}
+								color={'#cbd3db'}
+								fontSize={20}
+								fontFamily={'Raleway-Regular'}>
+								2 134 steps
+							</Label>
+						</View>
+					)}
+				</AnimatedCircularProgress>
+
+				<View />
 				{this.renderActionButton()}
 			</View>
 		);
@@ -88,11 +138,15 @@ class Home extends React.Component {
 }
 
 const styles = StyleSheet.create({
+	circleLabel: {
+		fontFamily: 'Raleway'
+	},
 	container: {
 		padding: 15,
 		paddingTop: 25,
 		flex: 1,
-		backgroundColor: '#f1f3f5'
+		backgroundColor: '#34495e',
+		alignItems: 'center'
 	},
 	actionButtonIcon: {
 		fontSize: 20,

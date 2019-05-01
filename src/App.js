@@ -36,7 +36,7 @@ const TabNavigator = createBottomTabNavigator(
 		Images: {
 			screen: PhotographsScreen,
 			navigationOptions: {
-				title: 'Capture Photographs'
+				title: 'Capture'
 			}
 		},
 		Home: {

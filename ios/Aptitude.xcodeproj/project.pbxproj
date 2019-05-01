@@ -64,6 +64,11 @@
 		4D6BF1617AF94D3A98A65C59 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D8BA853D6D463BBA51FD3F /* libRNSVG.a */; };
 		AB119D9CA4154418A4D9A49E /* libRNSVG-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E45E037E31E438B89805DBE /* libRNSVG-tvOS.a */; };
 		86154830430C491F903C1119 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6990AC1A71204FAFB485DF8E /* libSplashScreen.a */; };
+		29A11A68F8EE48DEBFC9168D /* libRNPedometer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FA2C7E10AD448C88C422C6 /* libRNPedometer.a */; };
+		CE79C3344C534007A83748D6 /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A9B564156A846EA82CA9A35 /* Raleway-Medium.ttf */; };
+		CE6FE787AA134D7288326BA5 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F92EEABFCB5461E80FD8E14 /* Raleway-Regular.ttf */; };
+		F709C51EC4F5458F85A73B75 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 803403BD7AF5400BB6A3797E /* Raleway-SemiBold.ttf */; };
+		EE1B8D1B8DF04B58B25C5326 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2E5184D50E3485EB8B5321B /* Raleway-Thin.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -403,6 +408,12 @@
 		6E45E037E31E438B89805DBE /* libRNSVG-tvOS.a */ = {isa = PBXFileReference; name = "libRNSVG-tvOS.a"; path = "libRNSVG-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		74B0B5C740CF4C1B8BA1B7CF /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; name = "SplashScreen.xcodeproj"; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		6990AC1A71204FAFB485DF8E /* libSplashScreen.a */ = {isa = PBXFileReference; name = "libSplashScreen.a"; path = "libSplashScreen.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		46D92411E2314CDF98C37C77 /* RNPedometer.xcodeproj */ = {isa = PBXFileReference; name = "RNPedometer.xcodeproj"; path = "../node_modules/react-native-pedometer/RNPedometer.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		A4FA2C7E10AD448C88C422C6 /* libRNPedometer.a */ = {isa = PBXFileReference; name = "libRNPedometer.a"; path = "libRNPedometer.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		8A9B564156A846EA82CA9A35 /* Raleway-Medium.ttf */ = {isa = PBXFileReference; name = "Raleway-Medium.ttf"; path = "../src/assets/fonts/Raleway-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9F92EEABFCB5461E80FD8E14 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; name = "Raleway-Regular.ttf"; path = "../src/assets/fonts/Raleway-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		803403BD7AF5400BB6A3797E /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; name = "Raleway-SemiBold.ttf"; path = "../src/assets/fonts/Raleway-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E2E5184D50E3485EB8B5321B /* Raleway-Thin.ttf */ = {isa = PBXFileReference; name = "Raleway-Thin.ttf"; path = "../src/assets/fonts/Raleway-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -438,6 +449,7 @@
 				595CB5DF5EB84E1789E29D4B /* libRNImagePicker.a in Frameworks */,
 				4D6BF1617AF94D3A98A65C59 /* libRNSVG.a in Frameworks */,
 				86154830430C491F903C1119 /* libSplashScreen.a in Frameworks */,
+				29A11A68F8EE48DEBFC9168D /* libRNPedometer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,6 +649,7 @@
 				F8149380214140A2B3EA29A8 /* RNImagePicker.xcodeproj */,
 				55B7C7D380704BC2AB340135 /* RNSVG.xcodeproj */,
 				74B0B5C740CF4C1B8BA1B7CF /* SplashScreen.xcodeproj */,
+				46D92411E2314CDF98C37C77 /* RNPedometer.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -703,6 +716,10 @@
 				D3154FC9C1F646418784739D /* Octicons.ttf */,
 				331A1269291D4887AE6DE812 /* SimpleLineIcons.ttf */,
 				97C8EDF6A9F748C8BDA3219D /* Zocial.ttf */,
+				8A9B564156A846EA82CA9A35 /* Raleway-Medium.ttf */,
+				9F92EEABFCB5461E80FD8E14 /* Raleway-Regular.ttf */,
+				803403BD7AF5400BB6A3797E /* Raleway-SemiBold.ttf */,
+				E2E5184D50E3485EB8B5321B /* Raleway-Thin.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1169,6 +1186,10 @@
 				DCCFCB8CA9124CE890508F14 /* Octicons.ttf in Resources */,
 				EE20922242D04E1CA0338C66 /* SimpleLineIcons.ttf in Resources */,
 				904AE261F9E04A5E9713CB44 /* Zocial.ttf in Resources */,
+				CE79C3344C534007A83748D6 /* Raleway-Medium.ttf in Resources */,
+				CE6FE787AA134D7288326BA5 /* Raleway-Regular.ttf in Resources */,
+				F709C51EC4F5458F85A73B75 /* Raleway-SemiBold.ttf in Resources */,
+				EE1B8D1B8DF04B58B25C5326 /* Raleway-Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1313,6 +1334,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1323,6 +1345,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
+					"$(SRCROOT)\..\node_modules\react-native-pedometer\RNPedometer",
 				);
 			};
 			name = Debug;
@@ -1354,6 +1377,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1364,6 +1388,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
+					"$(SRCROOT)\..\node_modules\react-native-pedometer\RNPedometer",
 				);
 			};
 			name = Release;
@@ -1393,6 +1418,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
+					"$(SRCROOT)\..\node_modules\react-native-pedometer\RNPedometer",
 				);
 			};
 			name = Debug;
@@ -1421,6 +1447,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
+					"$(SRCROOT)\..\node_modules\react-native-pedometer\RNPedometer",
 				);
 			};
 			name = Release;
@@ -1460,6 +1487,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1470,6 +1498,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
+					"$(SRCROOT)\..\node_modules\react-native-pedometer\RNPedometer",
 				);
 			};
 			name = Debug;
@@ -1509,6 +1538,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1519,6 +1549,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
+					"$(SRCROOT)\..\node_modules\react-native-pedometer\RNPedometer",
 				);
 			};
 			name = Release;
@@ -1557,6 +1588,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1567,6 +1599,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
+					"$(SRCROOT)\..\node_modules\react-native-pedometer\RNPedometer",
 				);
 			};
 			name = Debug;
@@ -1605,6 +1638,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1615,6 +1649,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
+					"$(SRCROOT)\..\node_modules\react-native-pedometer\RNPedometer",
 				);
 			};
 			name = Release;

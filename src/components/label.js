@@ -13,19 +13,20 @@ class Label extends React.Component {
 			color: COLOR_NEWSTRACK_GREY,
 			italics: false,
 			bold: false,
-			center: false
+			center: false,
+			fontFamily: FONT_PRIMARY
 		};
 
 		return (
 			<Text
 				style={[
-					styles.text,
 					this.props.style,
 					{
 						color: this.props.color,
 						paddingTop: this.props.paddingTop,
 						paddingBottom: this.props.paddingBottom,
 						fontSize: this.props.fontSize,
+						fontFamily: this.props.fontFamily,
 						fontStyle: this.props.italics ? 'italic' : 'normal',
 						fontWeight: this.props.bold ? 'bold' : 'normal',
 						textAlign: this.props.center ? 'center' : 'left'
@@ -37,11 +38,5 @@ class Label extends React.Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	text: {
-		fontFamily: FONT_PRIMARY
-	}
-});
 
 export default Label;

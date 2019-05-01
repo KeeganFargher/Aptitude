@@ -35,7 +35,7 @@ class LoginScreen extends React.Component {
 		var isAuthenticated = await AsyncStorage.getItem('isAuthenticated');
 		var loggedin = isAuthenticated === true.toString();
 		if (loggedin) {
-			// this.navigateScreen('Main');
+			this.navigateScreen('Main');
 		}
 	}
 
@@ -102,27 +102,14 @@ class LoginScreen extends React.Component {
 				</View>
 				<View style={styles.formContainerStyle}>
 					<View style={styles.inputContainerStyle}>
-						{/* <TextInputIcon
-							text={this.state.email}
-							name="email"
-							color={COLOR_WHITE}
-							autoCapitalize="none"
-							type={'material'}
-							keyboardType="email-address"
-							placeholderTextColor={COLOR_WHITE}
-							onChangeText={email => this.setState({ email: email })}
-							placeholder="Email Address"
-						/> */}
 						<Sae
 							label={'Email Address'}
 							iconClass={FontAwesomeIcon}
-							iconName={'mail'}
+							iconName={'envelope'}
 							iconColor={'white'}
 							inputPadding={20}
 							labelHeight={24}
-							// active border height
 							borderHeight={2}
-							// TextInput props
 							inputStyle={{ borderBottomColor: 'white', borderBottomWidth: 2 }}
 							labelStyle={{ color: 'rgba(255, 255, 255, 0.7)' }}
 							autoCapitalize={'none'}
@@ -132,17 +119,6 @@ class LoginScreen extends React.Component {
 						/>
 					</View>
 					<View style={styles.inputContainerStyle}>
-						{/* <TextInputIcon
-							text={this.state.password}
-							name="lock-outline"
-							color={COLOR_WHITE}
-							type={'material'}
-							autoCapitalize="none"
-							onChangeText={password => this.setState({ password: password })}
-							placeholderTextColor={COLOR_WHITE}
-							secureTextEntry
-							placeholder="Password"
-						/> */}
 						<Sae
 							label={'Password'}
 							iconClass={FontAwesomeIcon}
@@ -150,9 +126,8 @@ class LoginScreen extends React.Component {
 							iconColor={'white'}
 							inputPadding={20}
 							labelHeight={24}
-							// active border height
 							borderHeight={2}
-							// TextInput props
+							secureTextEntry
 							inputStyle={{ borderBottomColor: 'white', borderBottomWidth: 2 }}
 							labelStyle={{ color: 'rgba(255, 255, 255, 0.7)' }}
 							autoCapitalize={'none'}

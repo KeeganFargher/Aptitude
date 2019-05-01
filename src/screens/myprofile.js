@@ -37,12 +37,14 @@ class MyProfile extends React.Component {
 		super(props);
 
 		this.state = {
-			loading: false,
+			loading: true,
 			data: {
-				name: '',
-				surname: '',
-				email: '',
-				measurementTypeId: ''
+				name: ' ',
+				surname: ' ',
+				email: ' ',
+				measurementTypeId: '',
+				weight: 0,
+				height: 0
 			}
 		};
 	}
@@ -51,6 +53,7 @@ class MyProfile extends React.Component {
 		this.props.navigation.setParams({
 			saveProfileSettings: this._saveProfileSettings
 		});
+		this.setState({ loading: false });
 	}
 
 	componentWillMount() {
@@ -151,7 +154,7 @@ class MyProfile extends React.Component {
 			<View style={styles.container}>
 				<Spinner
 					visible={this.state.loading}
-					textContent={'Saving...'}
+					textContent={'Busy...'}
 					textStyle={styles.spinnerTextStyle}
 				/>
 
@@ -226,17 +229,6 @@ class MyProfile extends React.Component {
 								this.setState({ data: data });
 							}}
 						/>
-						{/* <Fumi
-							label={'Measurement Type'}
-							iconClass={FontAwesomeIcon}
-							iconName={'envelope'}
-							iconColor={'#f95a25'}
-							iconSize={20}
-							iconWidth={40}
-							inputPadding={16}
-							style={styles.input}
-							value={this.state.data.measurement}
-						/>*/}
 
 						<Label
 							style={[styles.header, { marginTop: 15 }]}
