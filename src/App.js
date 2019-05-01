@@ -9,12 +9,15 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { Icon } from 'react-native-elements';
 
 /* --- SCREENS --- */
 import LoginScreen from './screens/login';
 import HomeScreen from './screens/home';
 import MyProfileScreen from './screens/myprofile';
-import { Icon } from 'react-native-elements';
+import UpdateWeightScreen from './screens/updateweight';
+import PhotographsScreen from './screens/photographs';
+import GoalsScreen from './screens/goals';
 
 const styles = StyleSheet.create({
 	headerStyle: {
@@ -24,12 +27,18 @@ const styles = StyleSheet.create({
 		display: 'none'
 	},
 	blueHeaderStyle: {
-		backgroundColor: 'blue'
+		backgroundColor: '#2c3e50'
 	}
 });
 
 const TabNavigator = createBottomTabNavigator(
 	{
+		Images: {
+			screen: PhotographsScreen,
+			navigationOptions: {
+				title: 'Capture Photographs'
+			}
+		},
 		Home: {
 			screen: HomeScreen,
 			navigationOptions: {
@@ -53,20 +62,24 @@ const TabNavigator = createBottomTabNavigator(
 					iconName = `home`;
 				} else if (routeName === 'Profile') {
 					iconName = `user`;
+				} else if (routeName === 'Images') {
+					iconName = `camera`;
 				}
 				// iconName = 'users';
 
 				return (
 					<Icon name={iconName} type="font-awesome" size={horizontal ? 20 : 25} color={tintColor} />
 				);
+			},
+			tabBarOnPress: ({ navigation, defaultHandler }) => {
+				if (navigation.state.key == 'Profile') {
+					navigation.navigate('MyProfile');
+				} else if (navigation.state.key == 'Images') {
+					navigation.navigate('Photographs');
+				} else {
+					defaultHandler();
+				}
 			}
-			// tabBarOnPress: ({ navigation, defaultHandler }) => {
-			// 	if (navigation.state.key == 'Settings') {
-			// 		navigation.navigate('SettingsModal');
-			// 	} else {
-			// 		defaultHandler();
-			// 	}
-			// }
 		}),
 		tabBarOptions: {
 			activeTintColor: 'white',
@@ -89,15 +102,47 @@ const Aptitude = createStackNavigator(
 		Home: {
 			screen: createAppContainer(TabNavigator),
 			navigationOptions: {
-				headerStyle: styles.invisibleStyle
+				headerStyle: styles.blueHeaderStyle,
+				headerTintColor: 'white',
+				title: 'Home'
 			}
 		},
 		MyProfile: {
 			screen: MyProfileScreen,
 			navigationOptions: {
 				headerStyle: styles.blueHeaderStyle,
-				headerTintColor: 'yellow',
+				headerTintColor: 'white',
 				title: 'My Profile'
+			}
+		},
+		Main: {
+			screen: createAppContainer(TabNavigator),
+			navigationOptions: {
+				headerStyle: styles.invisibleStyle
+			}
+		},
+		LogWeight: {
+			screen: UpdateWeightScreen,
+			navigationOptions: {
+				headerStyle: styles.blueHeaderStyle,
+				headerTintColor: 'white',
+				title: 'Log Weight'
+			}
+		},
+		Photographs: {
+			screen: PhotographsScreen,
+			navigationOptions: {
+				headerStyle: styles.blueHeaderStyle,
+				headerTintColor: 'white',
+				title: 'Photographs'
+			}
+		},
+		Goals: {
+			screen: GoalsScreen,
+			navigationOptions: {
+				headerStyle: styles.blueHeaderStyle,
+				headerTintColor: 'white',
+				title: 'Set Goals'
 			}
 		}
 	},
