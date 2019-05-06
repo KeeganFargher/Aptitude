@@ -10,6 +10,7 @@ import * as React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { Icon } from 'react-native-elements';
+import { zoomIn, zoomOut } from 'react-navigation-transitions';
 
 /* --- SCREENS --- */
 import LoginScreen from './screens/login';
@@ -18,6 +19,7 @@ import MyProfileScreen from './screens/myprofile';
 import UpdateWeightScreen from './screens/updateweight';
 import PhotographsScreen from './screens/photographs';
 import GoalsScreen from './screens/goals';
+import SignupScreen from './screens/signup';
 
 const styles = StyleSheet.create({
 	headerStyle: {
@@ -144,27 +146,33 @@ const Aptitude = createStackNavigator(
 				headerTintColor: 'white',
 				title: 'Set Goals'
 			}
+		},
+		Signup: {
+			screen: SignupScreen,
+			navigationOptions: {
+				headerStyle: styles.invisibleStyle
+			}
 		}
 	},
 	{
-		transitionConfig: () => ({
-			screenInterpolator: sceneProps => {
-				const { layout, position, scene } = sceneProps;
-				const { index } = scene;
+		initialRouteName: 'Login',
+		transitionConfig: () => zoomIn()
+		// screenInterpolator: sceneProps => {
+		// 	const { layout, position, scene } = sceneProps;
+		// 	const { index } = scene;
 
-				const translateX = position.interpolate({
-					inputRange: [index - 1, index, index + 1],
-					outputRange: [layout.initWidth, 0, 0]
-				});
+		// 	const translateX = position.interpolate({
+		// 		inputRange: [index - 1, index, index + 1],
+		// 		outputRange: [layout.initWidth, 0, 0]
+		// 	});
 
-				const opacity = position.interpolate({
-					inputRange: [index - 1, index - 0.99, index, index + 0.99, index + 1],
-					outputRange: [0, 1, 1, 0.3, 0]
-				});
+		// 	const opacity = position.interpolate({
+		// 		inputRange: [index - 1, index - 0.99, index, index + 0.99, index + 1],
+		// 		outputRange: [0, 1, 1, 0.3, 0]
+		// 	});
 
-				return { opacity, transform: [{ translateX }] };
-			}
-		})
+		// 	return { opacity, transform: [{ translateX }] };
+		// }
 	}
 );
 

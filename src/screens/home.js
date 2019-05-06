@@ -104,7 +104,7 @@ class Home extends React.Component {
 				<AnimatedCircularProgress
 					size={250}
 					width={7}
-					fill={this.state.stepCount}
+					fill={this.state.stepCount} // (stepcount / stepgoal) * 100
 					duration={3000}
 					lineCap={'butt'}
 					tintColor="#d35400"

@@ -1,10 +1,10 @@
 import SplashScreen from 'react-native-splash-screen';
 import React from 'react';
 import { StyleSheet, Text, Image, View, TextInput, Platform, Alert } from 'react-native';
+import { COLOR_BLACK, COLOR_WHITE, COLOR_ROLONEXT_GREEN } from '../common/colours';
 import { NavigationActions } from 'react-navigation';
 import BackgroundContainer from './../components/backgroundcontainer';
 import TextInputIcon from './../components/textinputicon';
-import { COLOR_BLACK, COLOR_WHITE, COLOR_ROLONEXT_GREEN } from '../common/colours';
 import Label from './../components/label';
 import HorizontalLine from './../components/horizontalline';
 import PrimaryButton from './../components/primarybutton';
@@ -22,7 +22,6 @@ class LoginScreen extends React.Component {
 		this.resetNavigation = this.resetNavigation.bind(this);
 		this.login = this.login.bind(this);
 
-		//define state
 		this.state = {
 			email: 'keeganfargher@gmail.com',
 			password: '12345',
@@ -31,11 +30,10 @@ class LoginScreen extends React.Component {
 	}
 
 	async componentWillMount() {
-		//Check if user logged in already
 		var isAuthenticated = await AsyncStorage.getItem('isAuthenticated');
 		var loggedin = isAuthenticated === true.toString();
 		if (loggedin) {
-			this.navigateScreen('Main');
+			// this.navigateScreen('Main');
 		}
 	}
 
@@ -59,7 +57,8 @@ class LoginScreen extends React.Component {
 	login() {
 		if (this.state.email != '' || this.state.password != '') {
 			this.setState({ submitting: true });
-			let url = `${apiConstants.baseUrl}/users/verifylogin/${this.state.email}/${this.state.password}`;
+			const { email, password } = this.state;
+			let url = `${apiConstants.baseUrl}/users/verifylogin/${email}/${password}`;
 			console.log(url);
 			axios
 				.get(url)
@@ -74,7 +73,6 @@ class LoginScreen extends React.Component {
 		let data = response.data;
 
 		this.setState({ submitting: false });
-		//success, store the users apitoken and other info
 		AsyncStorage.setItem('data', JSON.stringify(data));
 		AsyncStorage.setItem('isAuthenticated', true.toString());
 		AsyncStorage.setItem('id', data.id);
@@ -138,7 +136,7 @@ class LoginScreen extends React.Component {
 					</View>
 					<View style={styles.actionContainerStyle}>
 						<PrimaryButton
-							title={this.state.submitting ? 'PROCESSING...' : 'LOGIN'}
+							title={this.state.submitting ? 'LOADING...' : 'LOGIN'}
 							disabled={this.state.submitting}
 							backgroundColor={COLOR_ROLONEXT_GREEN}
 							color={COLOR_WHITE}
@@ -149,15 +147,7 @@ class LoginScreen extends React.Component {
 						<Label
 							color={COLOR_WHITE}
 							paddingTop={20}
-							onPress={() =>
-								this.navigateScreen('SignUp', {
-									showSuccessfulRegistration: () =>
-										helpers.alert(
-											'Success',
-											'Please check your email address and follow the instructions to complete your registration..'
-										)
-								})
-							}>
+							onPress={() => this.navigateScreen('Signup')}>
 							Sign up here.
 						</Label>
 					</View>

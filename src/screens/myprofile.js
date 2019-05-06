@@ -101,19 +101,13 @@ class MyProfile extends React.Component {
 	}
 
 	getWeight() {
-		const weight = this.state.data.weight;
-		if (weight == null) {
-			return '';
-		}
-		return weight.toString();
+		const { weight } = this.state.data;
+		return weight == null ? '' : weight.toString();
 	}
 
 	getHeight() {
-		const height = this.state.data.height;
-		if (height == null) {
-			return '';
-		}
-		return height.toString();
+		const { height } = this.state.data;
+		return height == null ? '' : height.toString();
 	}
 
 	getWeightLabel() {
@@ -149,6 +143,25 @@ class MyProfile extends React.Component {
 		this.setState({ data: data });
 	}
 
+	renderBanner() {
+		return (
+			<ImageBackground
+				style={styles.imageContainer}
+				source={require('../assets/profile-background.png')}>
+				<TouchableHighlight style={styles.imageView} onPress={this._openImagePicker}>
+					<Image
+						style={styles.image}
+						source={{ uri: 'https://randomuser.me//api//portraits//women//68.jpg' }}
+						PlaceholderContent={<ActivityIndicator />}
+					/>
+				</TouchableHighlight>
+				<Label style={styles.name} color={'#e6e1dc'} fontSize={18} bold={true}>
+					{this.getFullName()}
+				</Label>
+			</ImageBackground>
+		);
+	}
+
 	render() {
 		return (
 			<View style={styles.container}>
@@ -158,20 +171,7 @@ class MyProfile extends React.Component {
 					textStyle={styles.spinnerTextStyle}
 				/>
 
-				<ImageBackground
-					style={styles.imageContainer}
-					source={require('../assets/profile-background.png')}>
-					<TouchableHighlight style={styles.imageView} onPress={this._openImagePicker}>
-						<Image
-							style={styles.image}
-							source={{ uri: 'https://randomuser.me//api//portraits//women//68.jpg' }}
-							PlaceholderContent={<ActivityIndicator />}
-						/>
-					</TouchableHighlight>
-					<Label style={styles.name} color={'#e6e1dc'} fontSize={18} bold={true}>
-						{this.getFullName()}
-					</Label>
-				</ImageBackground>
+				{this.renderBanner()}
 
 				<ScrollView contentContainerStyle={styles.margins}>
 					<KeyboardAvoidingView keyboardVerticalOffset={Header.HEIGHT + 20} behavior="height">

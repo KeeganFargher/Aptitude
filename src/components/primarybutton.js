@@ -9,12 +9,14 @@ class PrimaryButton extends React.Component {
 			onPress: null,
 			disabled: false,
 			backgroundColor: COLOR_ROLONEXT_GREEN,
-			color: COLOR_WHITE
+			color: COLOR_WHITE,
+			style: {}
 		};
 		return (
 			<TouchableOpacity
 				style={[
 					styles.buttonContainerStyle,
+					this.props.style,
 					{
 						backgroundColor: !this.props.backgroundColor
 							? PrimaryButton.defaultProps.backgroundColor
