@@ -10,9 +10,11 @@ pool:
   vmImage: 'macOS-10.13'
 
 steps:
-- task: Gradle@2
+- task: NodeTool@0 
   inputs:
-    workingDirectory: '$(System.DefaultWorkingDirectory)/android'
-    gradleWrapperFile: 'gradlew'
-    gradleOptions: '-Xmx3072m'
-    tasks: 'assembleDebug'
+    versionSpec: '8.x'
+- task: NodeTool@0 
+  inputs:
+    versionSpec: $(node_version)
+
+- script: npm install
